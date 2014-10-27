@@ -1,9 +1,9 @@
 {
-  "name": "simple-server",
+  "name": "roundup",
   "version": "1.0.0",
-  "description": "Simple HTTP Web Server",
+  "description": "Round-up game",
   "main": "app.js",
-  "author": "Chyld Medford <chyld.medford@gmail.com>",
+  "author": "Liza Carter <lizahcarter@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "connect": "^3.3.0",
