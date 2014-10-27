@@ -47,18 +47,28 @@ var level1 = (function(){
       ground.scale.setTo(2, 2);
       ground.body.immovable = true;
 
-      var ledge = platforms.create(-250, 400, 'ground');
+      var ledge = platforms.create(-150, 400, 'ground');
       ledge.body.immovable = true;
 
-      var ledge = platforms.create(-150, 200, 'ground');
+      var ledge = platforms.create(500, 400, 'ground');
       ledge.body.immovable = true;
 
-      var ledge = platforms.create(450, 150, 'ground');
+
+      var ledge = platforms.create(-50, 250, 'ground');
       ledge.body.immovable = true;
 
-      var ledge = platforms.create(600, 300, 'ground');
-      ledge.body.immovable = true;
 
+      var ledge2 = platforms.create(200, 75, 'ground');
+      ledge2.scale.setTo(0.2, 2);
+      ledge2.body.immovable = true;
+
+      var ledge3 = platforms.create(400, 150, 'ground');
+      ledge3.scale.setTo(0.4, 1.5);
+      ledge3.body.immovable = true;
+
+      var ledge4 = platforms.create(600, 50, 'ground');
+      ledge4.scale.setTo(0.3, 2.5);
+      ledge4.body.immovable = true;
     }
   };
   return o;
