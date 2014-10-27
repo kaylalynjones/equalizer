@@ -87,6 +87,7 @@ var level1 = (function(){
       player.body.gravity.y = 300;
       player.body.collideWorldBounds = true;
 
+
       player.animations.add('left', [0,1], 5, true);
       player.animations.add('right', [3,4], 5, true);
       cursors = game.input.keyboard.createCursorKeys();
@@ -95,8 +96,11 @@ var level1 = (function(){
 
       baddiesX = game.add.group();
       baddiesX.enableBody = true;
+
+
       baddiesZ = game.add.group();
       baddiesZ.enableBody = true;
+      //baddiesZ.body.collideWorldBounds = true;
       baddiesZ.createMultiple(10, 'baddiesZ');
       //baddiesZ = game.add.group();
       //baddiesZ.enableBody = true;
@@ -106,26 +110,31 @@ var level1 = (function(){
         var baddieX1 = baddiesX.create(i*310, 0, 'baddiesX1');
         baddieX1.body.gravity.y = 150;
         baddieX1.body.bounce.y = 0.3 + Math.random() * 0.2;
+        baddieX1.body.collideWorldBounds = true;
       }
       for(var i = 0; i < 2; i++){
         var baddieX2 = baddiesX.create((i+0.8)*200, 0, 'baddiesX2');
         baddieX2.body.gravity.y = 150;
         baddieX2.body.bounce.y = 0.3 + Math.random() * 0.2;
+        baddieX2.body.collideWorldBounds = true;
       }
       for(var i = 0; i < 2; i++){
         var baddieX3 = baddiesX.create((i+0.9) *275, 0, 'baddiesX3');
         baddieX3.body.gravity.y = 150;
         baddieX3.body.bounce.y = 0.3 + Math.random() * 0.2;
+        baddieX3.body.collideWorldBounds = true;
       }
       for(var i = 0; i < 2; i++){
         var baddieX4 = baddiesX.create((i+1)*380, 0, 'baddiesX4');
         baddieX4.body.gravity.y = 150;
         baddieX4.body.bounce.y = 0.3 + Math.random() * 0.2;
+        baddieX4.body.collideWorldBounds = true;
       }
       for(var i = 0; i < 2; i++){
         var baddieX5 = baddiesX.create((i+1.2)*312, 0, 'baddiesX5');
         baddieX5.body.gravity.y = 150;
         baddieX5.body.bounce.y = 0.3 + Math.random() * 0.2;
+        baddieX5.body.collideWorldBounds = true;
       }
 
       game.time.events.add(Phaser.Timer.SECOND * 30, gameOver, this);
@@ -169,9 +178,10 @@ var level1 = (function(){
 
         score += 20;
         scoreText.text = 'Score: ' + score;
-        baddieZ = baddiesZ.create(baddieX.x, baddieX.y, 'baddiesZ');
+        baddieZ = baddiesZ.create(baddieX.x+20, baddieX.y+40, 'baddiesZ');
         baddieZ.body.gravity.y = 150;
         baddieZ.body.bounce.y = 0.3 + Math.random() * 0.2;
+        baddieZ.body.collideWorldBounds = true;
       }
       function collectBaddieZ(player, baddieZ){
         baddieZ.kill();
