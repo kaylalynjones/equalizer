@@ -4,8 +4,9 @@ var menu = (function(){
   var o ={
     l : {},
     preload: function(){
-      game.load.image('background', '/assets/background.png');
-      game.load.image('start', '/assets/start.png');
+      game.load.image('background', '/assets/sky.png');
+      game.load.image('start', '/assets/star.png');
+
     },
     create: function(){
       game.add.sprite(0,0, 'background');
@@ -27,7 +28,39 @@ var menu = (function(){
 })();
 
 var level1 = (function(){
-  var o = {};
+  var o = {
+    l :{},
+
+    preload: function(){
+      game.load.image('background', '/assets/sky.png');
+      game.load.image('start', '/assets/star.png');
+      game.load.image('ground', '/assets/platform.png');
+    },
+    create: function(){
+      game.physics.startSystem(Phaser.Physics.ARCADE);
+
+      var platforms;
+      platforms = game.add.group();
+      platforms.enableBody = true;
+
+      var ground = platforms.create(0, game.world.height -64, 'ground');
+      ground.scale.setTo(2, 2);
+      ground.body.immovable = true;
+
+      var ledge = platforms.create(-250, 400, 'ground');
+      ledge.body.immovable = true;
+
+      var ledge = platforms.create(-150, 200, 'ground');
+      ledge.body.immovable = true;
+
+      var ledge = platforms.create(450, 150, 'ground');
+      ledge.body.immovable = true;
+
+      var ledge = platforms.create(600, 300, 'ground');
+      ledge.body.immovable = true;
+
+    }
+  };
   return o;
 })();
 
