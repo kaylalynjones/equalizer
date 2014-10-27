@@ -15,7 +15,7 @@ var menu = (function(){
       button.anchor.setTo(0.5);
       button.scale.setTo(0.5);
 
-      var text = game.add.text(game.world.centerX, game.world.centerY - button.height, 'RoundUp');
+      var text = game.add.text(game.world.centerX, game.world.centerY - button.height, 'The Equalizer');
       text.anchor.setTo(0.5);
     },
   };
@@ -183,6 +183,7 @@ var level1 = (function(){
       }
       function collectBaddieZ(player, baddieZ){
         baddieZ.kill();
+        o.l.killZSound.play();
 
         score += 40;
         scoreText.text = 'Score: ' + score;
