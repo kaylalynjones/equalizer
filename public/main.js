@@ -28,7 +28,8 @@ var menu = (function(){
 })();
 
 var level1 = (function(){
-  var platforms, player, baddiesX;
+  var platforms, player, baddiesX, baddiesZ, scoreText;
+  var score = 0;
   var o = {
     l :{},
 
@@ -36,7 +37,13 @@ var level1 = (function(){
       game.load.image('background', '/assets/background.png');
       game.load.image('start', '/assets/star.png');
       game.load.image('ground', '/assets/platform.png');
+      game.load.image('baddiesZ', '/assets/star.png');//baddieZ img KAYLA
       game.load.spritesheet('fighter', '/assets/ninja-girl.png', 62, 78);
+      game.load.audio('song', '/assets/background.mp3');
+      //game.load.audio('song', '/assets/music.mp3');
+      o.l.song = game.add.audio('song');
+      o.l.song.loop = true;
+      o.l.song.play();
     },
     create: function(){
       game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -61,7 +68,7 @@ var level1 = (function(){
       ledge.body.immovable = true;
 
 
-      var ledge2 = platforms.create(200, 75, 'ground');
+      var ledge2 = platforms.create(200, 85, 'ground');
       ledge2.scale.setTo(0.2, 2);
       ledge2.body.immovable = true;
 
@@ -69,8 +76,8 @@ var level1 = (function(){
       ledge3.scale.setTo(0.4, 1.5);
       ledge3.body.immovable = true;
 
-      var ledge4 = platforms.create(600, 50, 'ground');
-      ledge4.scale.setTo(0.3, 2.5);
+      var ledge4 = platforms.create(600, 100, 'ground');
+      ledge4.scale.setTo(0.3, 1.8);
       ledge4.body.immovable = true;
 
 
@@ -82,6 +89,7 @@ var level1 = (function(){
       player.body.gravity.y = 300;
       player.body.collideWorldBounds = true;
 
+
       player.animations.add('left', [0,1], 5, true);
       player.animations.add('right', [3,4], 5, true);
       cursors = game.input.keyboard.createCursorKeys();
@@ -91,30 +99,44 @@ var level1 = (function(){
       baddiesX = game.add.group();
       baddiesX.enableBody = true;
 
+
+      baddiesZ = game.add.group();
+      baddiesZ.enableBody = true;
+      //baddiesZ.body.collideWorldBounds = true;
+      baddiesZ.createMultiple(10, 'baddiesZ');
+      //baddiesZ = game.add.group();
+      //baddiesZ.enableBody = true;
+
+
       for(var i = 0; i < 2; i++){
         var baddieX1 = baddiesX.create(i*310, 0, 'baddiesX1');
         baddieX1.body.gravity.y = 150;
         baddieX1.body.bounce.y = 0.3 + Math.random() * 0.2;
+        baddieX1.body.collideWorldBounds = true;
       }
       for(var i = 0; i < 2; i++){
         var baddieX2 = baddiesX.create((i+0.8)*200, 0, 'baddiesX2');
         baddieX2.body.gravity.y = 150;
         baddieX2.body.bounce.y = 0.3 + Math.random() * 0.2;
+        baddieX2.body.collideWorldBounds = true;
       }
       for(var i = 0; i < 2; i++){
         var baddieX3 = baddiesX.create((i+0.9) *275, 0, 'baddiesX3');
         baddieX3.body.gravity.y = 150;
         baddieX3.body.bounce.y = 0.3 + Math.random() * 0.2;
+        baddieX3.body.collideWorldBounds = true;
       }
       for(var i = 0; i < 2; i++){
         var baddieX4 = baddiesX.create((i+1)*380, 0, 'baddiesX4');
         baddieX4.body.gravity.y = 150;
         baddieX4.body.bounce.y = 0.3 + Math.random() * 0.2;
+        baddieX4.body.collideWorldBounds = true;
       }
       for(var i = 0; i < 2; i++){
         var baddieX5 = baddiesX.create((i+1.2)*312, 0, 'baddiesX5');
         baddieX5.body.gravity.y = 150;
         baddieX5.body.bounce.y = 0.3 + Math.random() * 0.2;
+        baddieX5.body.collideWorldBounds = true;
       }
 
       game.time.events.add(Phaser.Timer.SECOND * 30, gameOver, this);
@@ -127,6 +149,9 @@ var level1 = (function(){
     update: function(){
       game.physics.arcade.collide(player, platforms);
       game.physics.arcade.collide(baddiesX, platforms);
+      game.physics.arcade.collide(baddiesZ, platforms);
+      game.physics.arcade.overlap(player, baddiesX, collectBaddieX, null, this);
+      game.physics.arcade.overlap(player, baddiesZ, collectBaddieZ, null, this);
 
       player.body.velocity.x = 0;
       if (cursors.left.isDown)
@@ -149,6 +174,25 @@ var level1 = (function(){
       {
         player.body.velocity.y = -350;
       }
+
+
+      function collectBaddieX(player, baddieX){
+        baddieX.kill();
+
+        score += 20;
+        scoreText.text = 'Score: ' + score;
+        baddieZ = baddiesZ.create(baddieX.x+20, baddieX.y+40, 'baddiesZ');
+        baddieZ.body.gravity.y = 150;
+        baddieZ.body.bounce.y = 0.3 + Math.random() * 0.2;
+        baddieZ.body.collideWorldBounds = true;
+      }
+      function collectBaddieZ(player, baddieZ){
+        baddieZ.kill();
+
+        score += 40;
+        scoreText.text = 'Score: ' + score;
+      }
+
     },
 
     render: function(){
