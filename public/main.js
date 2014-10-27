@@ -34,7 +34,7 @@ var level1 = (function(){
     l :{},
 
     preload: function(){
-      game.load.image('background', '/assets/sky.png');
+      game.load.image('background', '/assets/background.png');
       game.load.image('start', '/assets/star.png');
       game.load.image('ground', '/assets/platform.png');
       game.load.image('baddiesZ', '/assets/star.png');//baddieZ img KAYLA
@@ -50,6 +50,8 @@ var level1 = (function(){
     },
     create: function(){
       game.physics.startSystem(Phaser.Physics.ARCADE);
+
+      game.add.sprite(0,0,'background');
       // Ledges
       platforms = game.add.group();
       platforms.enableBody = true;
@@ -152,7 +154,6 @@ var level1 = (function(){
         o.l.score = 0;
       }
 
-
     },
     update: function(){
       game.physics.arcade.collide(player, platforms);
@@ -160,6 +161,7 @@ var level1 = (function(){
       game.physics.arcade.collide(baddiesZ, platforms);
       game.physics.arcade.overlap(player, baddiesX, collectBaddieX, null, this);
       game.physics.arcade.overlap(player, baddiesZ, collectBaddieZ, null, this);
+
       player.body.velocity.x = 0;
       if (cursors.left.isDown)
       {
@@ -182,6 +184,7 @@ var level1 = (function(){
         player.body.velocity.y = -350;
         o.l.jumpSound.play();
       }
+
 
       function collectBaddieX(player, baddieX){
         baddieX.kill();
