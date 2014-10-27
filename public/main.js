@@ -28,7 +28,8 @@ var menu = (function(){
 })();
 
 var level1 = (function(){
-  var platforms, player, baddiesX;
+  var platforms, player, baddiesX, scoreText;
+  var score = 0;
   var o = {
     l :{},
 
@@ -121,10 +122,12 @@ var level1 = (function(){
         game.state.start('menu');
       }
 
+
     },
     update: function(){
       game.physics.arcade.collide(player, platforms);
       game.physics.arcade.collide(baddiesX, platforms);
+      game.physics.arcade.overlap(player, baddiesX, collectBaddie, null, this);
 
       player.body.velocity.x = 0;
       if (cursors.left.isDown)
@@ -146,6 +149,13 @@ var level1 = (function(){
       if (cursors.up.isDown && player.body.touching.down)
       {
         player.body.velocity.y = -350;
+      }
+
+      function collectBaddie(player, baddieX){
+        baddieX.kill();
+
+        score += 20;
+        scoreText.text = 'Score: ' + score;
       }
     },
 
