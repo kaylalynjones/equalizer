@@ -31,15 +31,17 @@ var level1 = (function(){
   var o = {
     l :{},
 
+  var platforms, player;
+
     preload: function(){
       game.load.image('background', '/assets/sky.png');
       game.load.image('start', '/assets/star.png');
       game.load.image('ground', '/assets/platform.png');
+      game.load.spritesheet('fighter', '/assets/fighter.png', 50, 50); //Kayla enter info here
     },
     create: function(){
       game.physics.startSystem(Phaser.Physics.ARCADE);
-
-      var platforms;
+      // Ledges
       platforms = game.add.group();
       platforms.enableBody = true;
 
@@ -59,6 +61,29 @@ var level1 = (function(){
       var ledge = platforms.create(600, 300, 'ground');
       ledge.body.immovable = true;
 
+      //Fighter
+      player = game.add.sprite(game.world.centerX, game.world.height - 150, 'fighter');
+      game.physics.arcade.enable(player);
+
+      player.body.bounce.y = 0.2;
+      player.body.gravity.y = 300;
+      player.body.collideWorldBounds = true;
+
+      player.animations.add('left', [], 10, true); //Kayla
+      player.animations.add('right', [], 10, true); //Kayla
+      cursors = game.input.keyboard.createCursorKeys();
+
+      scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+      scoreText = game.add.text(game.world.width + 16, game.world.height + 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+
+      baddiesX = game.add.group();
+      baddiesX.enableBody = true;
+
+      for(var i = 0; i < 10; i++){
+        var baddieX = baddiesX.create(i * 70, 0, 'baddiesX');
+        baddieX.body.gravity.y = 6;
+        baddieX.body.bounce.y = 0.7 + Math.random() * 0.2;
+      }
     }
   };
   return o;
