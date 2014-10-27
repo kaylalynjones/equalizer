@@ -59,7 +59,7 @@ var level1 = (function(){
       ledge.body.immovable = true;
 
 
-      var ledge2 = platforms.create(200, 75, 'ground');
+      var ledge2 = platforms.create(200, 85, 'ground');
       ledge2.scale.setTo(0.2, 2);
       ledge2.body.immovable = true;
 
