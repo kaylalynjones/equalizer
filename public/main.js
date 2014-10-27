@@ -28,7 +28,7 @@ var menu = (function(){
 })();
 
 var level1 = (function(){
-  var platforms, player, baddiesX, baddieZ, scoreText;
+  var platforms, player, baddiesX, baddiesZ, scoreText;
   var score = 0;
   var o = {
     l :{},
@@ -37,7 +37,7 @@ var level1 = (function(){
       game.load.image('background', '/assets/sky.png');
       game.load.image('start', '/assets/star.png');
       game.load.image('ground', '/assets/platform.png');
-      game.load.image('baddieZ', '/assets/star.png');
+      game.load.image('baddiesZ', '/assets/star.png');//baddieZ img KAYLA
       game.load.spritesheet('fighter', '/assets/ninja-girl.png', 62, 78);
       game.load.audio('song', '/assets/background.mp3');
       game.load.audio('jump', '/assets/jump.wav');
@@ -101,6 +101,12 @@ var level1 = (function(){
 
       baddiesX = game.add.group();
       baddiesX.enableBody = true;
+      baddiesZ = game.add.group();
+      baddiesZ.enableBody = true;
+      baddiesZ.createMultiple(10, 'baddiesZ');
+      //baddiesZ = game.add.group();
+      //baddiesZ.enableBody = true;
+
 
       for(var i = 0; i < 2; i++){
         var baddieX1 = baddiesX.create(i*310, 0, 'baddiesX1');
@@ -139,8 +145,9 @@ var level1 = (function(){
     update: function(){
       game.physics.arcade.collide(player, platforms);
       game.physics.arcade.collide(baddiesX, platforms);
-      game.physics.arcade.overlap(player, baddiesX, collectBaddie, null, this);
-
+      game.physics.arcade.collide(baddiesZ, platforms);
+      game.physics.arcade.overlap(player, baddiesX, collectBaddieX, null, this);
+      game.physics.arcade.overlap(player, baddiesZ, collectBaddieZ, null, this);
       player.body.velocity.x = 0;
       if (cursors.left.isDown)
       {
@@ -164,13 +171,21 @@ var level1 = (function(){
         o.l.jumpSound.play();
       }
 
-      function collectBaddie(player, baddieX){
+      function collectBaddieX(player, baddieX){
         baddieX.kill();
         o.l.killXSound.play();
 
         score += 20;
         scoreText.text = 'Score: ' + score;
-        baddieZ = game.add.image(baddieX.x, baddieX.y, 'baddieZ')//add baddieZ img
+        baddieZ = baddiesZ.create(baddieX.x, baddieX.y, 'baddiesZ');
+        baddieZ.body.gravity.y = 150;
+        baddieZ.body.bounce.y = 0.3 + Math.random() * 0.2;
+      }
+      function collectBaddieZ(player, baddieZ){
+        baddieZ.kill();
+
+        score += 40;
+        scoreText.text = 'Score: ' + score;
       }
     },
 
