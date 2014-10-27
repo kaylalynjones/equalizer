@@ -47,14 +47,14 @@ var level1 = (function(){
       ground.scale.setTo(2, 2);
       ground.body.immovable = true;
 
-      var ledge = platforms.create(-150, 400, 'ground');
+      var ledge = platforms.create(-50, 400, 'ground');
       ledge.body.immovable = true;
 
       var ledge = platforms.create(500, 400, 'ground');
       ledge.body.immovable = true;
 
 
-      var ledge = platforms.create(-50, 250, 'ground');
+      var ledge = platforms.create(-150, 250, 'ground');
       ledge.body.immovable = true;
 
 
