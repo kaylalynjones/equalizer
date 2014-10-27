@@ -37,7 +37,7 @@ var level1 = (function(){
       game.load.image('background', '/assets/background.png');
       game.load.image('start', '/assets/star.png');
       game.load.image('ground', '/assets/platform.png');
-      game.load.image('baddiesZ', '/assets/star.png');//baddieZ img KAYLA
+      game.load.image('baddiesZ', '/assets/equality.png');
       game.load.spritesheet('fighter', '/assets/ninja-girl.png', 62, 78);
       game.load.audio('song', '/assets/background.mp3');
       game.load.audio('jump', '/assets/jump.wav');
