@@ -95,9 +95,9 @@ var level1 = (function(){
 
       baddiesX = game.add.group();
       baddiesX.enableBody = true;
-      o.l.baddiesZ = game.add.group();
-      o.l.baddiesZ.enableBody = true;
-      o.l.baddiesZ.createMultiple(10, 'baddiesZ');
+      baddiesZ = game.add.group();
+      baddiesZ.enableBody = true;
+      baddiesZ.createMultiple(10, 'baddiesZ');
       //baddiesZ = game.add.group();
       //baddiesZ.enableBody = true;
 
@@ -169,7 +169,9 @@ var level1 = (function(){
 
         score += 20;
         scoreText.text = 'Score: ' + score;
-        baddieZ = game.add.image(baddieX.x, baddieX.y, 'baddiesZ')
+        baddieZ = baddiesZ.create(baddieX.x, baddieX.y, 'baddiesZ');
+        baddieZ.body.gravity.y = 150;
+        baddieZ.body.bounce.y = 0.3 + Math.random() * 0.2;
       }
       function collectBaddieZ(player, baddieZ){
         baddieZ.kill();
