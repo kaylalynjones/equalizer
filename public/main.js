@@ -29,7 +29,7 @@ var menu = (function(){
 
 var level1 = (function(){
   var platforms, player, baddiesX, baddiesZ, scoreText;
-  var score = 0;
+  //var score = 0;
   var o = {
     l :{},
 
@@ -50,6 +50,8 @@ var level1 = (function(){
       // Ledges
       platforms = game.add.group();
       platforms.enableBody = true;
+
+      o.l.score = 0;
 
       var ground = platforms.create(0, game.world.height -64, 'ground');
       ground.scale.setTo(2, 2);
@@ -141,6 +143,7 @@ var level1 = (function(){
 
       function gameOver(){
         game.state.start('menu');
+        o.l.score = 0;
       }
 
 
@@ -176,9 +179,9 @@ var level1 = (function(){
       function collectBaddieX(player, baddieX){
         baddieX.kill();
 
-        score += 20;
-        scoreText.text = 'Score: ' + score;
-        baddieZ = baddiesZ.create(baddieX.x+20, baddieX.y+40, 'baddiesZ');
+        o.l.score += 20;
+        scoreText.text = 'Score: ' + o.l.score;
+        baddieZ = baddiesZ.create(baddieX.x, baddieX.y-60, 'baddiesZ');
         baddieZ.body.gravity.y = 150;
         baddieZ.body.bounce.y = 0.3 + Math.random() * 0.2;
         baddieZ.body.collideWorldBounds = true;
@@ -186,9 +189,10 @@ var level1 = (function(){
       function collectBaddieZ(player, baddieZ){
         baddieZ.kill();
 
-        score += 40;
-        scoreText.text = 'Score: ' + score;
+        o.l.score += 40;
+        scoreText.text = 'Score: ' + o.l.score;
       }
+
     },
 
     render: function(){
