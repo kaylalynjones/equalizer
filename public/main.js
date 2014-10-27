@@ -36,7 +36,7 @@ var level1 = (function(){
       game.load.image('background', '/assets/sky.png');
       game.load.image('start', '/assets/star.png');
       game.load.image('ground', '/assets/platform.png');
-      game.load.spritesheet('fighter', '/assets/fighter.png', 50, 50); //Kayla enter info here
+      game.load.spritesheet('fighter', '/assets/ninja-girl.png', 62, 78);
     },
     create: function(){
       game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -80,8 +80,8 @@ var level1 = (function(){
       player.body.gravity.y = 300;
       player.body.collideWorldBounds = true;
 
-      /*player.animations.add('left', [], 10, true); //Kayla
-      player.animations.add('right', [], 10, true); //Kayla*/
+      player.animations.add('left', [0,1], 5, true);
+      player.animations.add('right', [3,4], 5, true);
       cursors = game.input.keyboard.createCursorKeys();
 
       scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#ffffff' });
@@ -125,6 +125,28 @@ var level1 = (function(){
     update: function(){
       game.physics.arcade.collide(player, platforms);
       game.physics.arcade.collide(baddiesX, platforms);
+
+      player.body.velocity.x = 0;
+      if (cursors.left.isDown)
+      {
+        player.body.velocity.x = -150;
+        player.animations.play('left');
+      }
+      else if (cursors.right.isDown)
+      {
+        player.body.velocity.x = 150;
+        player.animations.play('right');
+      }
+      else
+      {
+        player.animations.stop();
+        player.frame = 2;
+      }
+
+      if (cursors.up.isDown && player.body.touching.down)
+      {
+        player.body.velocity.y = -350;
+      }
     },
 
     render: function(){
