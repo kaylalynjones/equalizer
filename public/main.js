@@ -28,19 +28,20 @@ var menu = (function(){
 })();
 
 var level1 = (function(){
-  var platforms, player, baddiesX, scoreText;
-  var score = 0;
+  var platforms, player, baddiesX;
   var o = {
     l :{},
 
     preload: function(){
-      game.load.image('background', '/assets/sky.png');
+      game.load.image('background', '/assets/background.png');
       game.load.image('start', '/assets/star.png');
       game.load.image('ground', '/assets/platform.png');
       game.load.spritesheet('fighter', '/assets/ninja-girl.png', 62, 78);
     },
     create: function(){
       game.physics.startSystem(Phaser.Physics.ARCADE);
+
+      game.add.sprite(0,0,'background');
       // Ledges
       platforms = game.add.group();
       platforms.enableBody = true;
@@ -60,7 +61,7 @@ var level1 = (function(){
       ledge.body.immovable = true;
 
 
-      var ledge2 = platforms.create(200, 85, 'ground');
+      var ledge2 = platforms.create(200, 75, 'ground');
       ledge2.scale.setTo(0.2, 2);
       ledge2.body.immovable = true;
 
@@ -68,8 +69,8 @@ var level1 = (function(){
       ledge3.scale.setTo(0.4, 1.5);
       ledge3.body.immovable = true;
 
-      var ledge4 = platforms.create(600, 100, 'ground');
-      ledge4.scale.setTo(0.3, 1.8);
+      var ledge4 = platforms.create(600, 50, 'ground');
+      ledge4.scale.setTo(0.3, 2.5);
       ledge4.body.immovable = true;
 
 
@@ -122,12 +123,10 @@ var level1 = (function(){
         game.state.start('menu');
       }
 
-
     },
     update: function(){
       game.physics.arcade.collide(player, platforms);
       game.physics.arcade.collide(baddiesX, platforms);
-      game.physics.arcade.overlap(player, baddiesX, collectBaddie, null, this);
 
       player.body.velocity.x = 0;
       if (cursors.left.isDown)
@@ -149,13 +148,6 @@ var level1 = (function(){
       if (cursors.up.isDown && player.body.touching.down)
       {
         player.body.velocity.y = -350;
-      }
-
-      function collectBaddie(player, baddieX){
-        baddieX.kill();
-
-        score += 20;
-        scoreText.text = 'Score: ' + score;
       }
     },
 
