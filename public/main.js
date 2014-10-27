@@ -28,10 +28,9 @@ var menu = (function(){
 })();
 
 var level1 = (function(){
+  var platforms, player, baddiesX;
   var o = {
     l :{},
-
-  var platforms, player;
 
     preload: function(){
       game.load.image('background', '/assets/sky.png');
@@ -49,14 +48,14 @@ var level1 = (function(){
       ground.scale.setTo(2, 2);
       ground.body.immovable = true;
 
-      var ledge = platforms.create(-150, 400, 'ground');
+      var ledge = platforms.create(-50, 400, 'ground');
       ledge.body.immovable = true;
 
       var ledge = platforms.create(500, 400, 'ground');
       ledge.body.immovable = true;
 
 
-      var ledge = platforms.create(-50, 250, 'ground');
+      var ledge = platforms.create(-150, 250, 'ground');
       ledge.body.immovable = true;
 
 
@@ -81,24 +80,48 @@ var level1 = (function(){
       player.body.gravity.y = 300;
       player.body.collideWorldBounds = true;
 
-      player.animations.add('left', [], 10, true); //Kayla
-      player.animations.add('right', [], 10, true); //Kayla
+      /*player.animations.add('left', [], 10, true); //Kayla
+      player.animations.add('right', [], 10, true); //Kayla*/
       cursors = game.input.keyboard.createCursorKeys();
 
-      scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
-      scoreText = game.add.text(game.world.width + 16, game.world.height + 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+      scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#ffffff' });
+      scoreText = game.add.text(680, 16, 'timer: 30', { fontSize: '32px', fill: '#ffffff' });
 
       baddiesX = game.add.group();
       baddiesX.enableBody = true;
 
-      for(var i = 0; i < 10; i++){
-        var baddieX = baddiesX.create(i * 70, 0, 'baddiesX');
-        baddieX.body.gravity.y = 6;
-        baddieX.body.bounce.y = 0.7 + Math.random() * 0.2;
+      for(var i = 0; i < 2; i++){
+        var baddieX1 = baddiesX.create(i*310, 0, 'baddiesX1');
+        baddieX1.body.gravity.y = 6;
+        baddieX1.body.bounce.y = 0.3 + Math.random() * 0.2;
+      }
+      for(var i = 0; i < 2; i++){
+        var baddieX2 = baddiesX.create((i+0.8)*200, 0, 'baddiesX2');
+        baddieX2.body.gravity.y = 6;
+        baddieX2.body.bounce.y = 0.3 + Math.random() * 0.2;
+      }
+      for(var i = 0; i < 2; i++){
+        var baddieX3 = baddiesX.create((i+0.9) *275, 0, 'baddiesX3');
+        baddieX3.body.gravity.y = 6;
+        baddieX3.body.bounce.y = 0.3 + Math.random() * 0.2;
+      }
+      for(var i = 0; i < 2; i++){
+        var baddieX4 = baddiesX.create((i+1)*380, 0, 'baddiesX4');
+        baddieX4.body.gravity.y = 6;
+        baddieX4.body.bounce.y = 0.3 + Math.random() * 0.2;
+      }
+      for(var i = 0; i < 2; i++){
+        var baddieX5 = baddiesX.create((i+1.2)*312, 0, 'baddiesX5');
+        baddieX5.body.gravity.y = 6;
+        baddieX5.body.bounce.y = 0.3 + Math.random() * 0.2;
       }
 
 
-    }
+    },
+    update: function(){
+      game.physics.arcade.collide(player, platforms);
+      game.physics.arcade.collide(baddiesX, platforms);
+    },
   };
   return o;
 })();
