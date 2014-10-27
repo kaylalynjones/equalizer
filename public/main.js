@@ -85,43 +85,53 @@ var level1 = (function(){
       cursors = game.input.keyboard.createCursorKeys();
 
       scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#ffffff' });
-      scoreText = game.add.text(680, 16, 'timer: 30', { fontSize: '32px', fill: '#ffffff' });
 
       baddiesX = game.add.group();
       baddiesX.enableBody = true;
 
       for(var i = 0; i < 2; i++){
         var baddieX1 = baddiesX.create(i*310, 0, 'baddiesX1');
-        baddieX1.body.gravity.y = 6;
+        baddieX1.body.gravity.y = 150;
         baddieX1.body.bounce.y = 0.3 + Math.random() * 0.2;
       }
       for(var i = 0; i < 2; i++){
         var baddieX2 = baddiesX.create((i+0.8)*200, 0, 'baddiesX2');
-        baddieX2.body.gravity.y = 6;
+        baddieX2.body.gravity.y = 150;
         baddieX2.body.bounce.y = 0.3 + Math.random() * 0.2;
       }
       for(var i = 0; i < 2; i++){
         var baddieX3 = baddiesX.create((i+0.9) *275, 0, 'baddiesX3');
-        baddieX3.body.gravity.y = 6;
+        baddieX3.body.gravity.y = 150;
         baddieX3.body.bounce.y = 0.3 + Math.random() * 0.2;
       }
       for(var i = 0; i < 2; i++){
         var baddieX4 = baddiesX.create((i+1)*380, 0, 'baddiesX4');
-        baddieX4.body.gravity.y = 6;
+        baddieX4.body.gravity.y = 150;
         baddieX4.body.bounce.y = 0.3 + Math.random() * 0.2;
       }
       for(var i = 0; i < 2; i++){
         var baddieX5 = baddiesX.create((i+1.2)*312, 0, 'baddiesX5');
-        baddieX5.body.gravity.y = 6;
+        baddieX5.body.gravity.y = 150;
         baddieX5.body.bounce.y = 0.3 + Math.random() * 0.2;
       }
 
+      game.time.events.add(Phaser.Timer.SECOND * 30, gameOver, this);
+
+      function gameOver(){
+        game.state.start('menu');
+      }
 
     },
     update: function(){
       game.physics.arcade.collide(player, platforms);
       game.physics.arcade.collide(baddiesX, platforms);
     },
+
+    render: function(){
+      game.debug.text('Time:' + game.time.events.duration/1000, 680, 16);
+    },
+
+
   };
   return o;
 })();
