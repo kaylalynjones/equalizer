@@ -28,7 +28,7 @@ var menu = (function(){
 })();
 
 var level1 = (function(){
-  var platforms, player, baddiesX, scoreText;
+  var platforms, player, baddiesX, baddieZ, scoreText;
   var score = 0;
   var o = {
     l :{},
@@ -37,7 +37,16 @@ var level1 = (function(){
       game.load.image('background', '/assets/sky.png');
       game.load.image('start', '/assets/star.png');
       game.load.image('ground', '/assets/platform.png');
+      game.load.image('baddieZ', '/assets/star.png');
       game.load.spritesheet('fighter', '/assets/ninja-girl.png', 62, 78);
+      game.load.audio('song', '/assets/background.mp3');
+      game.load.audio('jump', '/assets/jump.wav');
+      game.load.audio('killX', '/assets/kill_X.wav');
+      game.load.audio('killZ', '/assets/kill_Z.wav');
+      //game.load.audio('song', '/assets/music.mp3');
+      o.l.song = game.add.audio('song');
+      o.l.song.loop = true;
+      o.l.song.play();
     },
     create: function(){
       game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -76,6 +85,9 @@ var level1 = (function(){
       //Fighter
       player = game.add.sprite(game.world.centerX, game.world.height - 150, 'fighter');
       game.physics.arcade.enable(player);
+      o.l.jumpSound = game.add.audio('jump');
+      o.l.killXSound = game.add.audio('killX');
+      o.l.killZSound = game.add.audio('killZ');
 
       player.body.bounce.y = 0.2;
       player.body.gravity.y = 300;
@@ -149,13 +161,16 @@ var level1 = (function(){
       if (cursors.up.isDown && player.body.touching.down)
       {
         player.body.velocity.y = -350;
+        o.l.jumpSound.play();
       }
 
       function collectBaddie(player, baddieX){
         baddieX.kill();
+        o.l.killXSound.play();
 
         score += 20;
         scoreText.text = 'Score: ' + score;
+        baddieZ = game.add.image(baddieX.x, baddieX.y, 'baddieZ')//add baddieZ img
       }
     },
 
