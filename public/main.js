@@ -148,7 +148,8 @@ var level1 = (function(){
       }
 
       game.time.events.add(Phaser.Timer.SECOND * 30, gameOver, this);
-      if(o.l.score === 600){gameOver();}
+      if(o.l.score === 600)
+        gameOver();
 
       function gameOver(){
         game.state.start('menu');
