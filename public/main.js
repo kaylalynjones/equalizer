@@ -116,8 +116,6 @@ var level1 = (function(){
       //baddiesZ = game.add.group();
       //baddiesZ.enableBody = true;
 
-<<<<<<< HEAD
-=======
       /*for(var i = 0; i < 2; i++){
 
         var baddieX1 = baddiesX.create((i + 1.5)*240, 0, 'baddiesX1');
