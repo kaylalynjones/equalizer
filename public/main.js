@@ -205,6 +205,9 @@ var level1 = (function(){
         o.l.score += 40;
         scoreText.text = 'Score: ' + o.l.score;
       }
+      if (o.l.score === 600){
+        game.state.start('winner');
+      }
 
     },
 
@@ -217,6 +220,31 @@ var level1 = (function(){
   return o;
 })();
 
+var winner = (function(){
+  var o ={
+    l : {},
+    preload: function(){
+      game.load.image('background', '/assets/winner.png');
+      game.load.image('again', '/assets/play-again.png');
+
+    },
+    create: function(){
+      game.add.sprite(0,0, 'background');
+      var button = game.add.button(game.world.centerX-150, game.world.centerY+150, 'again', o.l.startGame);
+      button.anchor.setTo(0.5);
+
+    },
+  };
+
+  o.l.startGame = function(){
+    game.state.start('level1');
+  };
+
+  return o;
+})();
+
+
 game.state.add('menu', menu);
 game.state.add('level1', level1);
+game.state.add('winner', winner);
 game.state.start('menu');
