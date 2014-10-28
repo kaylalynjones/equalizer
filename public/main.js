@@ -116,7 +116,7 @@ var level1 = (function(){
       //baddiesZ = game.add.group();
       //baddiesZ.enableBody = true;
 
-      for(var i = 0; i < 2; i++){
+      /*for(var i = 0; i < 2; i++){
 
         var baddieX1 = baddiesX.create((i + 1.5)*240, 0, 'baddiesX1');
         baddieX1.body.gravity.y = 150;
@@ -146,11 +146,52 @@ var level1 = (function(){
         baddieX5.body.gravity.y = 150;
         baddieX5.body.bounce.y = 0.3 + Math.random() * 0.2;
         baddieX5.body.collideWorldBounds = true;
-      }
+      }*/
+      
+      var baddieX1 = baddiesX.create(10, 0, 'baddiesX1');
+      baddieX1.body.gravity.y = 150;
+      baddieX1.body.bounce.y = 0.3 + Math.random() * 0.2;
+      baddieX1.body.collideWorldBounds = true;
+      var baddieX2 = baddiesX.create(80, 0, 'baddiesX2');
+      baddieX2.body.gravity.y = 150;
+      baddieX2.body.bounce.y = 0.3 + Math.random() * 0.2;
+      baddieX2.body.collideWorldBounds = true;
+      var baddieX3 = baddiesX.create(150, 0, 'baddiesX3');
+      baddieX3.body.gravity.y = 150;
+      baddieX3.body.bounce.y = 0.3 + Math.random() * 0.2;
+      baddieX3.body.collideWorldBounds = true;
+      var baddieX4 = baddiesX.create(210, 0, 'baddiesX4');
+      baddieX4.body.gravity.y = 150;
+      baddieX4.body.bounce.y = 0.3 + Math.random() * 0.2;
+      baddieX4.body.collideWorldBounds = true;
+      var baddieX5 = baddiesX.create(300, 0, 'baddiesX5');
+      baddieX5.body.gravity.y = 150;
+      baddieX5.body.bounce.y = 0.3 + Math.random() * 0.2;
+      baddieX5.body.collideWorldBounds = true;
+      var baddieX6 = baddiesX.create(420, 0, 'baddiesX1');
+      baddieX6.body.gravity.y = 150;
+      baddieX6.body.bounce.y = 0.3 + Math.random() * 0.2;
+      baddieX6.body.collideWorldBounds = true;
+      var baddieX7 = baddiesX.create(500, 0, 'baddiesX2');
+      baddieX7.body.gravity.y = 150;
+      baddieX7.body.bounce.y = 0.3 + Math.random() * 0.2;
+      baddieX7.body.collideWorldBounds = true;
+      var baddieX8 = baddiesX.create(600, 0, 'baddiesX3');
+      baddieX8.body.gravity.y = 150;
+      baddieX8.body.bounce.y = 0.3 + Math.random() * 0.2;
+      baddieX8.body.collideWorldBounds = true;
+      var baddieX9 = baddiesX.create(660, 0, 'baddiesX4');
+      baddieX9.body.gravity.y = 150;
+      baddieX9.body.bounce.y = 0.3 + Math.random() * 0.2;
+      baddieX9.body.collideWorldBounds = true;
+      var baddieX10 = baddiesX.create(740, 0, 'baddiesX5');
+      baddieX10.body.gravity.y = 150;
+      baddieX10.body.bounce.y = 0.3 + Math.random() * 0.2;
+      baddieX10.body.collideWorldBounds = true;
 
       game.time.events.add(Phaser.Timer.SECOND * 30, gameOver, this);
       if(o.l.score === 600){gameOver();}
-
+//-------makin the baddies move **************************************
       setTimeout(function(){
         baddiesX.forEachAlive(function(baddieX){
           var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
@@ -158,7 +199,6 @@ var level1 = (function(){
           var interval = Math.floor(Math.random() * 4000) + 2000;
           game.add.tween(baddieX).to( { x: baddieX.position.x - xOffset }, interval, Phaser.Easing.Linear.None, true, 0, 1000, true);
         });
-
       }, 5000);
 
       function gameOver(){
