@@ -189,15 +189,6 @@ var level1 = (function(){
       baddieX10.body.bounce.y = 0.3 + Math.random() * 0.2;
       baddieX10.body.collideWorldBounds = true;
 
-      o.l.timer = game.time.events.loop(3000, this.moveBaddies, this);
-
-      function moveBaddies(){
-        baddieX1.body.velocity.x = 50;
-      }
-
-      game.time.events.add(Phaser.Timer.SECOND * 30, gameOver, this);
-
-
       game.time.events.add(Phaser.Timer.SECOND * 30, gameOver, this);
       if(o.l.score === 600){gameOver();}
 //-------makin the baddies move **************************************
