@@ -6,5 +6,12 @@ body{
 
 #roundup{
   width: 800px;
-  margin: 40px auto;
+  margin: 0 auto;
+}
+
+p{
+  font-size: 18px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
 }
