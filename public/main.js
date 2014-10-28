@@ -38,6 +38,11 @@ var level1 = (function(){
       game.load.image('start', '/assets/star.png');
       game.load.image('ground', '/assets/platform.png');
       game.load.image('baddiesZ', '/assets/equality.png');
+      game.load.image('baddiesX1', '/assets/money.png');
+      game.load.image('baddiesX2', '/assets/ballot.png');
+      game.load.image('baddiesX3', '/assets/birthcontrol.png');
+      game.load.image('baddiesX4', '/assets/grad.png');
+      game.load.image('baddiesX5', '/assets/nonviolence.png');
       game.load.spritesheet('fighter', '/assets/ninja-girl.png', 62, 78);
       game.load.audio('song', '/assets/background.mp3');
       game.load.audio('jump', '/assets/jump.wav');
@@ -115,32 +120,31 @@ var level1 = (function(){
       //baddiesZ = game.add.group();
       //baddiesZ.enableBody = true;
 
-
       for(var i = 0; i < 2; i++){
         var baddieX1 = baddiesX.create(i*310, 0, 'baddiesX1');
         baddieX1.body.gravity.y = 150;
         baddieX1.body.bounce.y = 0.3 + Math.random() * 0.2;
         baddieX1.body.collideWorldBounds = true;
       }
-      for(var i = 0; i < 2; i++){
+      for(i = 0; i < 2; i++){
         var baddieX2 = baddiesX.create((i+0.8)*200, 0, 'baddiesX2');
         baddieX2.body.gravity.y = 150;
         baddieX2.body.bounce.y = 0.3 + Math.random() * 0.2;
         baddieX2.body.collideWorldBounds = true;
       }
-      for(var i = 0; i < 2; i++){
+      for(i = 0; i < 2; i++){
         var baddieX3 = baddiesX.create((i+0.9) *275, 0, 'baddiesX3');
         baddieX3.body.gravity.y = 150;
         baddieX3.body.bounce.y = 0.3 + Math.random() * 0.2;
         baddieX3.body.collideWorldBounds = true;
       }
-      for(var i = 0; i < 2; i++){
+      for(i = 0; i < 2; i++){
         var baddieX4 = baddiesX.create((i+1)*380, 0, 'baddiesX4');
         baddieX4.body.gravity.y = 150;
         baddieX4.body.bounce.y = 0.3 + Math.random() * 0.2;
         baddieX4.body.collideWorldBounds = true;
       }
-      for(var i = 0; i < 2; i++){
+      for(i = 0; i < 2; i++){
         var baddieX5 = baddiesX.create((i+1.2)*312, 0, 'baddiesX5');
         baddieX5.body.gravity.y = 150;
         baddieX5.body.bounce.y = 0.3 + Math.random() * 0.2;
