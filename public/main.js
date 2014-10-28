@@ -121,31 +121,31 @@ var level1 = (function(){
       //baddiesZ.enableBody = true;
 
       for(var i = 0; i < 2; i++){
-        var baddieX1 = baddiesX.create(i*310, 0, 'baddiesX1');
+        var baddieX1 = baddiesX.create((i + 1.5)*240, 0, 'baddiesX1');
         baddieX1.body.gravity.y = 150;
         baddieX1.body.bounce.y = 0.3 + Math.random() * 0.2;
         baddieX1.body.collideWorldBounds = true;
       }
-      for(i = 0; i < 2; i++){
-        var baddieX2 = baddiesX.create((i+0.8)*200, 0, 'baddiesX2');
+      for(i = 1; i < 3; i++){
+        var baddieX2 = baddiesX.create((i)* 100 , 0, 'baddiesX2');
         baddieX2.body.gravity.y = 150;
         baddieX2.body.bounce.y = 0.3 + Math.random() * 0.2;
         baddieX2.body.collideWorldBounds = true;
       }
-      for(i = 0; i < 2; i++){
-        var baddieX3 = baddiesX.create((i+0.9) *275, 0, 'baddiesX3');
+      for(i = 1; i < 3; i++){
+        var baddieX3 = baddiesX.create((i+ 1) *150, 0, 'baddiesX3');
         baddieX3.body.gravity.y = 150;
         baddieX3.body.bounce.y = 0.3 + Math.random() * 0.2;
         baddieX3.body.collideWorldBounds = true;
       }
-      for(i = 0; i < 2; i++){
-        var baddieX4 = baddiesX.create((i+1)*380, 0, 'baddiesX4');
+      for(i = 1; i < 3; i++){
+        var baddieX4 = baddiesX.create((i)* 250, 0, 'baddiesX4');
         baddieX4.body.gravity.y = 150;
         baddieX4.body.bounce.y = 0.3 + Math.random() * 0.2;
         baddieX4.body.collideWorldBounds = true;
       }
       for(i = 0; i < 2; i++){
-        var baddieX5 = baddiesX.create((i+1.2)*312, 0, 'baddiesX5');
+        var baddieX5 = baddiesX.create((i+1.5)*280, 0, 'baddiesX5');
         baddieX5.body.gravity.y = 150;
         baddieX5.body.bounce.y = 0.3 + Math.random() * 0.2;
         baddieX5.body.collideWorldBounds = true;
@@ -197,7 +197,7 @@ var level1 = (function(){
 
         o.l.score += 20;
         scoreText.text = 'Score: ' + o.l.score;
-        baddieZ = baddiesZ.create(baddieX.x, baddieX.y-60, 'baddiesZ');
+        baddieZ = baddiesZ.create(baddieX.x+150, baddieX.y+10, 'baddiesZ');
         baddieZ.body.gravity.y = 150;
         baddieZ.body.bounce.y = 0.3 + Math.random() * 0.2;
         baddieZ.body.collideWorldBounds = true;
