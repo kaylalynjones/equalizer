@@ -4,19 +4,15 @@ var menu = (function(){
   var o ={
     l : {},
     preload: function(){
-      game.load.image('background', '/assets/sky.png');
-      game.load.image('start', '/assets/star.png');
+      game.load.image('background', '/assets/start-screen.png');
+      game.load.image('start', '/assets/start-btn.png');
 
     },
     create: function(){
       game.add.sprite(0,0, 'background');
-
-      var button = game.add.button(game.world.centerX, game.world.centerY, 'start', o.l.startGame);
+      var button = game.add.button(game.world.centerX-150, game.world.centerY+150, 'start', o.l.startGame);
       button.anchor.setTo(0.5);
-      button.scale.setTo(0.5);
-
-      var text = game.add.text(game.world.centerX, game.world.centerY - button.height, 'The Equalizer');
-      text.anchor.setTo(0.5);
+      button.scale.setTo(0.9);
     },
   };
 
