@@ -147,7 +147,7 @@ var level1 = (function(){
         baddieX5.body.bounce.y = 0.3 + Math.random() * 0.2;
         baddieX5.body.collideWorldBounds = true;
       }*/
-      
+
       var baddieX1 = baddiesX.create(10, 0, 'baddiesX1');
       baddieX1.body.gravity.y = 150;
       baddieX1.body.bounce.y = 0.3 + Math.random() * 0.2;
