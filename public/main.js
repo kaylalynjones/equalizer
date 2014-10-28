@@ -42,7 +42,7 @@ var level1 = (function(){
       game.load.audio('song', '/assets/background.mp3');
       game.load.audio('jump', '/assets/jump.wav');
       game.load.audio('killX', '/assets/kill_X.wav');
-      game.load.audio('killZ', '/assets/kill_Z.wav');
+      game.load.audio('killZ', '/assets/kill_Z.mp3');
       //game.load.audio('song', '/assets/music.mp3');
       o.l.song = game.add.audio('song');
       o.l.song.loop = true;
