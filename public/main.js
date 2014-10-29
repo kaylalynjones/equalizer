@@ -116,41 +116,6 @@ var level1 = (function(){
       //baddiesZ = game.add.group();
       //baddiesZ.enableBody = true;
 
-<<<<<<< HEAD
-=======
-      /*for(var i = 0; i < 2; i++){
-
-        var baddieX1 = baddiesX.create((i + 1.5)*240, 0, 'baddiesX1');
-        baddieX1.body.gravity.y = 150;
-        baddieX1.body.bounce.y = 0.3 + Math.random() * 0.2;
-        baddieX1.body.collideWorldBounds = true;
-      }
-      for(i = 1; i < 3; i++){
-        var baddieX2 = baddiesX.create((i)* 100 , 0, 'baddiesX2');
-        baddieX2.body.gravity.y = 150;
-        baddieX2.body.bounce.y = 0.3 + Math.random() * 0.2;
-        baddieX2.body.collideWorldBounds = true;
-      }
-      for(i = 1; i < 3; i++){
-        var baddieX3 = baddiesX.create((i+ 1) *150, 0, 'baddiesX3');
-        baddieX3.body.gravity.y = 150;
-        baddieX3.body.bounce.y = 0.3 + Math.random() * 0.2;
-        baddieX3.body.collideWorldBounds = true;
-      }
-      for(i = 1; i < 3; i++){
-        var baddieX4 = baddiesX.create((i)* 250, 0, 'baddiesX4');
-        baddieX4.body.gravity.y = 150;
-        baddieX4.body.bounce.y = 0.3 + Math.random() * 0.2;
-        baddieX4.body.collideWorldBounds = true;
-      }
-      for(i = 0; i < 2; i++){
-        var baddieX5 = baddiesX.create((i+1.5)*280, 0, 'baddiesX5');
-        baddieX5.body.gravity.y = 150;
-        baddieX5.body.bounce.y = 0.3 + Math.random() * 0.2;
-        baddieX5.body.collideWorldBounds = true;
-      }*/
-      
->>>>>>> ff00616226ae1ae34ce14a87cbda25d6956d9e23
       var baddieX1 = baddiesX.create(10, 0, 'baddiesX1');
       baddieX1.body.gravity.y = 150;
       baddieX1.body.bounce.y = 0.3 + Math.random() * 0.2;
@@ -191,32 +156,15 @@ var level1 = (function(){
       baddieX10.body.gravity.y = 150;
       baddieX10.body.bounce.y = 0.3 + Math.random() * 0.2;
       baddieX10.body.collideWorldBounds = true;
-<<<<<<< HEAD
-
-      o.l.timer = game.time.events.loop(3000, this.moveBaddies, this);
-
-      function moveBaddies(){
-        baddieX1.body.velocity.x = 50;
-      }
-=======
->>>>>>> ff00616226ae1ae34ce14a87cbda25d6956d9e23
 
       game.time.events.add(Phaser.Timer.SECOND * 30, gameOver, this);
       if(o.l.score === 600){gameOver();}
-//-------makin the baddies move **************************************
-      setTimeout(function(){
-        baddiesX.forEachAlive(function(baddieX){
-          var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
-          var xOffset = (Math.floor(Math.random() * 100) + 50) * plusOrMinus;
-          var interval = Math.floor(Math.random() * 4000) + 2000;
-          game.add.tween(baddieX).to( { x: baddieX.position.x - xOffset }, interval, Phaser.Easing.Linear.None, true, 0, 1000, true);
-        });
-      }, 5000);
 
       function gameOver(){
         game.state.start('menu');
         o.l.score = 0;
       }
+
     },
     update: function(){
       game.physics.arcade.collide(player, platforms);
