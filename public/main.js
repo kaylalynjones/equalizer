@@ -160,6 +160,15 @@ var level1 = (function(){
       game.time.events.add(Phaser.Timer.SECOND * 30, gameOver, this);
       if(o.l.score === 600){gameOver();}
 
+      setTimeout(function(){
+        baddiesX.forEachAlive(function(baddieX){
+          var plusOrMinus = Math.random() < 0.5 ? -1 : 1;
+          var xOffset = (Math.floor(Math.random() * 100) + 50) * plusOrMinus;
+          var interval = Math.floor(Math.random() * 4000) + 2000;
+          game.add.tween(baddieX).to( { x: baddieX.position.x - xOffset }, interval, Phaser.Easing.Linear.None, true, 0, 1000, true);
+        });
+      }, 5000);
+
       function gameOver(){
         game.state.start('menu');
         o.l.score = 0;
