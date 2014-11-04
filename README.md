@@ -1,5 +1,4 @@
 #The Equalizer
-=========
 ####Demolish inequalities and collect your reward.
 ###But you must hurry time is running out!
 
